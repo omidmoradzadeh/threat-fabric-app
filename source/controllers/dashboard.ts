@@ -1,48 +1,13 @@
-/** source/controllers/posts.ts */
 import { Request, Response, NextFunction } from "express";
-import axios, { AxiosResponse } from "axios";
 import Chart = require("../model/chart");
 import ChartDataItem = require("../model/chartDataItem");
 import MenuItem = require("../model/menuItem");
 import Progress = require("../model/progress");
 import CardProgress = require("../model/cardProgress");
-import { createModuleResolutionCache } from "typescript";
-
-interface Post {
-  userId: Number;
-  id: Number;
-  title: String;
-  body: String;
-}
-
-const fs = require("fs");
-var path = require("path");
-
-// getting all devices
-const getDevices = async (req: Request, res: Response, next: NextFunction) => {
-  if (path.existsSync("device.json")) {
-    return res.status(200).json({
-      devices: 1,
-    });
-  } else {
-    return res.status(200).json({
-      devices: 2,
-    });
-  }
-
-  //   let rawdata = fs.readFileSync("device.json");
-  //   let devices = JSON.parse(rawdata);
-  //   return res.status(200).json({
-  //     devices: devices,
-  //   });
-  // return res.status(200).json({
-  //   devices: "abc",
-  // });
-};
 
 const chartItemCount = 15;
 
-// getting all posts
+// getting dashboard
 const getDashboard = async (
   req: Request,
   res: Response,
@@ -143,33 +108,18 @@ const getDashboard = async (
     chartItemCount,
     "line"
   );
-  // var chart1DataItem6 = createChartDataItem("BROADCAST SMS", chartItemCount, "line");
-  // var chart1DataItem7 = createChartDataItem("CAMERA", chartItemCount, "line");
-  // var chart1DataItem8 = createChartDataItem("CALL PHONE", chartItemCount, "line");
 
   var chart3 = new Chart(
     "Abnormal Security Devices",
     createLabels(chartItemCount),
     400,
-    [
-      "#62acc9",
-      "#f89a1c",
-      "#bdda7b",
-      "#e5d26d",
-      "#f15722",
-      // "#01949A",
-      // "#004369",
-      // "#DB1F48",
-    ],
+    ["#62acc9", "#f89a1c", "#bdda7b", "#e5d26d", "#f15722"],
     [
       chart1DataItem1,
       chart1DataItem2,
       chart1DataItem3,
       chart1DataItem4,
       chart1DataItem5,
-      // chart1DataItem6,
-      // chart1DataItem7,
-      // chart1DataItem8,
     ]
   );
 
@@ -319,56 +269,23 @@ const getAbnormalChart = async (
     chartItemCount,
     "line"
   );
-  // var chart1DataItem6 = createChartDataItem("BROADCAST SMS", chartItemCount, "line");
-  // var chart1DataItem7 = createChartDataItem("CAMERA", chartItemCount, "line");
-  // var chart1DataItem8 = createChartDataItem("CALL PHONE", chartItemCount, "line");
 
   var chart = new Chart(
     "Abnormal Security Devices",
     createLabels(chartItemCount),
     400,
-    [
-      "#98C8DB",
-      "#FABC57",
-      "#DDEBBD",
-      "#f68f59",
-      "#f15722",
-      // "#01949A",
-      // "#004369",
-      // "#DB1F48",
-    ],
+    ["#98C8DB", "#FABC57", "#DDEBBD", "#f68f59", "#f15722"],
     [
       chart1DataItem1,
       chart1DataItem2,
       chart1DataItem3,
       chart1DataItem4,
       chart1DataItem5,
-      // chart1DataItem6,
-      // chart1DataItem7,
-      // chart1DataItem8,
     ]
   );
 
   return res.status(200).json({
     chart,
-  });
-};
-
-// getting a single post
-const getDashboardDetail = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  // get the post id from the req
-  let id: string = req.params.id;
-  // get the post
-  let result: AxiosResponse = await axios.get(
-    `https://jsonplaceholder.typicode.com/posts/${id}`
-  );
-  let post: Post = result.data;
-  return res.status(200).json({
-    message: post,
   });
 };
 
@@ -413,5 +330,4 @@ export default {
   getRootedChart,
   getAbnormalChart,
   getDashboard,
-  getDevices,
 };

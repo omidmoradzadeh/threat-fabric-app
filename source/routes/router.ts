@@ -9,5 +9,6 @@ router.get('/api/dashboard/InfectedChart', dashboardController.getInfectedChart)
 router.get('/api/dashboard/RootedChart', dashboardController.getRootedChart);
 router.get('/api/dashboard/AbnormalChart', dashboardController.getAbnormalChart);
 router.get('/api/device', deviceController.getDevices);
+router.get('/api/deviceDetail/:id', deviceController.getDevicesDetail);
 
 export = router;

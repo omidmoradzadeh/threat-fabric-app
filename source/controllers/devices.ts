@@ -1,6 +1,5 @@
 "use strict";
 import { Request, Response, NextFunction, json } from "express";
-import axios, { AxiosResponse } from "axios";
 const querystring = require("querystring");
 import { List } from "linq.ts";
 
@@ -10,6 +9,17 @@ interface Device {
   deviceType: String;
   deviceRiskLevelScore: String;
   lastSeenTimestamp: String;
+  appName: String;
+  installationTimestamp: String;
+  lastUpdateTimestamp: String;
+  appVersion: String;
+  installDate: String;
+  permissions: List<Permission>;
+}
+
+interface Permission {
+  name: String;
+  description: String;
 }
 
 // get all devices
@@ -67,6 +77,56 @@ const getDevices = async (req: Request, res: Response, next: NextFunction) => {
   });
 };
 
+//get device detail with id
+const getDevicesDetail = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  var id = req.params.id;
+  var queryId = 0;
+  if (id) queryId = Number(id);
+  var devices = data;
+  var device = devices
+    .Where((q) => q?.id == queryId)
+    .Select((t) => t)
+    .FirstOrDefault();
+
+  return res.status(200).json({
+    device: device,
+  });
+};
+
+var permissions = new List<Permission>([
+  {
+    name: "BIND_VPN",
+    description:
+      "Must be required by a VpnService to ensure that only system can bind to it.",
+  },
+  {
+    name: "BLUETOOTH_ADMIN",
+    description: "Allows applications to discover and pair bluetooth devices.",
+  },
+  {
+    name: "BROADCAST_SMS",
+    description:
+      "Allows an application to broadcast an SMS receipt notification.",
+  },
+  {
+    name: "CALL_COMPANION",
+    description:
+      "Allows an app which implements the InCallService API to be eligible.",
+  },
+  {
+    name: "CAPTURE_AUDIO",
+    description: "Allows an application to capture audio output.",
+  },
+  {
+    name: "	CHANGE_STATE",
+    description: "Allows applications to change network connectivity state.",
+  },
+]);
+
 let data = new List<Device>([
   {
     id: 1000,
@@ -74,6 +134,12 @@ let data = new List<Device>([
     deviceType: "Android",
     deviceRiskLevelScore: "1",
     lastSeenTimestamp: "1650561021",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1002,
@@ -81,6 +147,12 @@ let data = new List<Device>([
     deviceType: "IOS",
     deviceRiskLevelScore: "1",
     lastSeenTimestamp: "1650561022",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1003,
@@ -88,6 +160,12 @@ let data = new List<Device>([
     deviceType: "Android",
     deviceRiskLevelScore: "3",
     lastSeenTimestamp: "1650561023",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1004,
@@ -95,6 +173,12 @@ let data = new List<Device>([
     deviceType: "Android",
     deviceRiskLevelScore: "2",
     lastSeenTimestamp: "1650561024",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1005,
@@ -102,6 +186,12 @@ let data = new List<Device>([
     deviceType: "IOS",
     deviceRiskLevelScore: "1",
     lastSeenTimestamp: "1650561025",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1006,
@@ -109,6 +199,12 @@ let data = new List<Device>([
     deviceType: "IOS",
     deviceRiskLevelScore: "2",
     lastSeenTimestamp: "1650561026",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1007,
@@ -116,6 +212,12 @@ let data = new List<Device>([
     deviceType: "Android",
     deviceRiskLevelScore: "3",
     lastSeenTimestamp: "1650561027",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1008,
@@ -123,6 +225,12 @@ let data = new List<Device>([
     deviceType: "PC",
     deviceRiskLevelScore: "1",
     lastSeenTimestamp: "1650561028",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1009,
@@ -130,6 +238,12 @@ let data = new List<Device>([
     deviceType: "Android",
     deviceRiskLevelScore: "2",
     lastSeenTimestamp: "1650561029",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1010,
@@ -137,6 +251,12 @@ let data = new List<Device>([
     deviceType: "Android",
     deviceRiskLevelScore: "2",
     lastSeenTimestamp: "1650561030",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1011,
@@ -144,6 +264,12 @@ let data = new List<Device>([
     deviceType: "PC",
     deviceRiskLevelScore: "1",
     lastSeenTimestamp: "1650561031",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1012,
@@ -151,6 +277,12 @@ let data = new List<Device>([
     deviceType: "PC",
     deviceRiskLevelScore: "1",
     lastSeenTimestamp: "1650561032",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1013,
@@ -158,6 +290,12 @@ let data = new List<Device>([
     deviceType: "Android",
     deviceRiskLevelScore: "1",
     lastSeenTimestamp: "1650561033",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1014,
@@ -165,6 +303,12 @@ let data = new List<Device>([
     deviceType: "IOS",
     deviceRiskLevelScore: "2",
     lastSeenTimestamp: "1650561034",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
   {
     id: 1015,
@@ -172,7 +316,13 @@ let data = new List<Device>([
     deviceType: "Android",
     deviceRiskLevelScore: "3",
     lastSeenTimestamp: "1650561036",
+    appName: "Telegrm",
+    installationTimestamp: "1650561021",
+    lastUpdateTimestamp: "1650561021",
+    appVersion: "2.1",
+    installDate: "2022/4/22",
+    permissions: permissions,
   },
 ]);
 
-export default { getDevices };
+export default { getDevices, getDevicesDetail };

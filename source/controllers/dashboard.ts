@@ -15,6 +15,31 @@ interface Post {
   body: String;
 }
 
+const fs = require("fs");
+var path = require("path");
+
+// getting all devices
+const getDevices = async (req: Request, res: Response, next: NextFunction) => {
+  if (path.existsSync("device.json")) {
+    return res.status(200).json({
+      devices: 1,
+    });
+  } else {
+    return res.status(200).json({
+      devices: 2,
+    });
+  }
+
+  //   let rawdata = fs.readFileSync("device.json");
+  //   let devices = JSON.parse(rawdata);
+  //   return res.status(200).json({
+  //     devices: devices,
+  //   });
+  // return res.status(200).json({
+  //   devices: "abc",
+  // });
+};
+
 const chartItemCount = 15;
 
 // getting all posts
@@ -24,38 +49,42 @@ const getDashboard = async (
   next: NextFunction
 ) => {
   var menu1 = new MenuItem(
-    "pi-info-circle text-yellow-500 text-xl",
+    "pi-info-circle text-yellow-3 text-xl",
+    "bg-yellow-1",
     "Total Infected",
     String(generateRandomNumber(0, 1000)),
     String(generateRandomNumber(0, 100)) + "%",
-    "pi-arrow-up text-green-500",
+    "pi-arrow-up text-green-1",
     "Since Last Month"
   );
 
   var menu2 = new MenuItem(
-    "pi-euro text-green-500 text-xl",
+    "pi-euro text-green-3 text-xl",
+    "bg-green-1",
     "Infection Price",
     String(generateRandomNumber(0, 10000)) + "$",
     String(generateRandomNumber(0, 100)) + "%",
-    "pi-arrow-up text-green-500",
+    "pi-arrow-up text-green-1",
     "Since Last Month"
   );
 
   var menu3 = new MenuItem(
-    "pi-flag-fill text-cyan-500 text-xl",
+    "pi-flag text-blue-3 text-xl",
+    "bg-blue-1",
     "Total Rooted",
     String(generateRandomNumber(0, 1000)),
     String(generateRandomNumber(0, 100)) + "%",
-    "pi-arrow-down text-pink-500",
+    "pi-arrow-down text-red-2",
     "Since Last Month"
   );
 
   var menu4 = new MenuItem(
-    "pi-ban text-purple-500  text-xl",
+    "pi-ban text-red-3 text-xl",
+    "bg-red-1",
     "Total Abnormal",
     String(generateRandomNumber(0, 1000)),
     String(generateRandomNumber(0, 100)) + "%",
-    "pi-arrow-up text-green-500",
+    "pi-arrow-up text-green-1",
     "Since Last Month"
   );
 
@@ -67,12 +96,11 @@ const getDashboard = async (
   var progress = new CardProgress(
     "Infected Devices Ratio",
     new Array<Progress>(
-      new Progress("IOS", "bg-pink-300", progressIos),
-      new Progress("Android", "bg-indigo-300", progressAndroid),
-      new Progress("PC", "bg-teal-300", progressPc)
+      new Progress("IOS", "bg-red-2", progressIos),
+      new Progress("Android", "bg-green-2", progressAndroid),
+      new Progress("PC", "bg-light-blue-1", progressPc)
     )
   );
-
 
   var chart1DataItem1 = createChartDataItem("pc", chartItemCount, "bar");
   var chart1DataItem2 = createChartDataItem("ios", chartItemCount, "bar");
@@ -82,7 +110,7 @@ const getDashboard = async (
     "Infected Devices",
     createLabels(chartItemCount),
     400,
-    ["#63474D", "#D6A184", "#FEC196"],
+    ["bg-red-1", "bg-red-2", "bg-red-3"],
     [chart1DataItem1, chart1DataItem2, chart1DataItem3]
   );
 
@@ -97,7 +125,6 @@ const getDashboard = async (
     ["#145DA0", "#0C2D48", "#B1D4E0"],
     [chart1DataItem1, chart1DataItem2, chart1DataItem3]
   );
-
 
   var chart1DataItem1 = createChartDataItem("BIND APP", chartItemCount, "line");
   var chart1DataItem2 = createChartDataItem(
@@ -125,11 +152,11 @@ const getDashboard = async (
     createLabels(chartItemCount),
     400,
     [
-      "#3D550C",
-      "#81B622",
-      "#ECF87F",
-      "#59981A",
-      "#E5DDC8",
+      "#62acc9",
+      "#f89a1c",
+      "#bdda7b",
+      "#e5d26d",
+      "#f15722",
       // "#01949A",
       // "#004369",
       // "#DB1F48",
@@ -164,47 +191,56 @@ const getStatistic = async (
   next: NextFunction
 ) => {
   var menu1 = new MenuItem(
-    "pi-info-circle text-yellow-500 text-xl",
+    "pi-info-circle text-yellow-3 text-xl",
+    "bg-yellow-1",
     "Total Infected",
     String(generateRandomNumber(0, 1000)),
     String(generateRandomNumber(0, 100)) + "%",
-    "pi-arrow-up text-green-500",
+    "pi-arrow-up text-green-1",
     "Since Last Month"
   );
 
   var menu2 = new MenuItem(
-    "pi-euro text-green-500 text-xl",
+    "pi-euro text-green-3 text-xl",
+    "bg-green-1",
     "Infection Price",
     String(generateRandomNumber(0, 10000)) + "$",
     String(generateRandomNumber(0, 100)) + "%",
-    "pi-arrow-up text-green-500",
+    "pi-arrow-up text-green-1",
     "Since Last Month"
   );
 
   var menu3 = new MenuItem(
-    "pi-flag-fill text-cyan-500 text-xl",
+    "pi-flag text-blue-3 text-xl",
+    "bg-blue-1",
     "Total Rooted",
     String(generateRandomNumber(0, 1000)),
     String(generateRandomNumber(0, 100)) + "%",
-    "pi-arrow-down text-pink-500",
+    "pi-arrow-down text-red-2",
     "Since Last Month"
   );
 
   var menu4 = new MenuItem(
-    "pi-ban text-purple-500  text-xl",
+    "pi-ban text-red-3  text-xl",
+    "bg-red-1",
     "Total Abnormal",
     String(generateRandomNumber(0, 1000)),
     String(generateRandomNumber(0, 100)) + "%",
-    "pi-arrow-up text-green-500",
+    "pi-arrow-up text-green-1",
     "Since Last Month"
   );
+
+  var progressMaxValue = 100;
+  var progressIos = generateRandomNumber(0, progressMaxValue);
+  var progressAndroid = generateRandomNumber(0, progressMaxValue - progressIos);
+  var progressPc = progressMaxValue - progressIos - progressAndroid;
 
   var progress = new CardProgress(
     "Infected Devices Ratio",
     new Array<Progress>(
-      new Progress("IOS", "bg-pink-300", 12),
-      new Progress("Android", "bg-indigo-300", 31),
-      new Progress("PC", "bg-teal-300", 57)
+      new Progress("IOS", "bg-red-2", progressIos),
+      new Progress("Android", "bg-green-2", progressAndroid),
+      new Progress("PC", "bg-light-blue-1", progressPc)
     )
   );
 
@@ -230,7 +266,7 @@ const getInfectedChart = async (
     "Infected Devices",
     createLabels(chartItemCount),
     400,
-    ["#63474D", "#D6A184", "#FEC196"],
+    ["#98C8DB", "#FABC57", "#DDEBBD"],
     [chart1DataItem1, chart1DataItem2, chart1DataItem3]
   );
 
@@ -252,7 +288,7 @@ const getRootedChart = async (
     "Rooted Devices",
     createLabels(chartItemCount),
     400,
-    ["#145DA0", "#0C2D48", "#B1D4E0"],
+    ["#98C8DB", "#FABC57", "#DDEBBD"],
     [chart1DataItem1, chart1DataItem2, chart1DataItem3]
   );
 
@@ -292,11 +328,11 @@ const getAbnormalChart = async (
     createLabels(chartItemCount),
     400,
     [
-      "#3D550C",
-      "#81B622",
-      "#ECF87F",
-      "#59981A",
-      "#E5DDC8",
+      "#98C8DB",
+      "#FABC57",
+      "#DDEBBD",
+      "#f68f59",
+      "#f15722",
       // "#01949A",
       // "#004369",
       // "#DB1F48",
@@ -377,4 +413,5 @@ export default {
   getRootedChart,
   getAbnormalChart,
   getDashboard,
+  getDevices,
 };

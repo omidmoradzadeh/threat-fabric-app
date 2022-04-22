@@ -1,5 +1,6 @@
 class MenuItem {
   public iconClass: String;
+  public iconBgClass: String;
   public title: String;
   public value: String;
   public descriptionValue: String;
@@ -8,6 +9,7 @@ class MenuItem {
 
   constructor(
     iconClass: String,
+    iconBgClass: String,
     title: String,
     value: String,
     descriptionValue: String,
@@ -15,6 +17,7 @@ class MenuItem {
     descriptionText: String
   ) {
     this.iconClass = iconClass;
+    this.iconBgClass = iconBgClass;
     this.title = title;
     this.value = value;
     this.descriptionValue = descriptionValue;

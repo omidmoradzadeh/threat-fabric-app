@@ -1,0 +1,103 @@
+{
+    "devices": [
+      {
+        "id": 1000,
+        "deviceId": "75583416-bdea-4767-ba08-ce78f8927f44",
+        "deviceType": "Android",
+        "deviceRiskLevelScore": "1",
+        "lastSeenTimestamp": "1650561020"
+      },
+      {
+        "id": 1002,
+        "deviceId": "a3ac41a0-2d4d-4e7e-9fc0-01eb9435cf91",
+        "deviceType": "IOS",
+        "deviceRiskLevelScore": "1",
+        "lastSeenTimestamp": "1650561020"
+      },
+      {
+        "id": 1003,
+        "deviceId": "924c6153-af89-433e-b927-47069a8383c1",
+        "deviceType": "Android",
+        "deviceRiskLevelScore": "3",
+        "lastSeenTimestamp": "1650561020"
+      },
+      {
+        "id": 1004,
+        "deviceId": "28a4ba65-fd7d-42f3-8f9e-ad66abc954eb",
+        "deviceType": "Android",
+        "deviceRiskLevelScore": "2",
+        "lastSeenTimestamp": "1650561020"
+      },
+      {
+        "id": 1005,
+        "deviceId": "1b374cdb-b645-496d-8cb5-478d85d73f71",
+        "deviceType": "IOS",
+        "deviceRiskLevelScore": "1",
+        "lastSeenTimestamp": "1650561020"
+      },
+      {
+        "id": 1006,
+        "deviceId": "6e7dab25-cf86-4823-b56f-71540d8a8d70",
+        "deviceType": "IOS",
+        "deviceRiskLevelScore": "2",
+        "lastSeenTimestamp": "1650561020"
+      },
+      {
+        "id": 1007,
+        "deviceId": "be7ad15f-66e9-4f93-a404-edeba2db3aec",
+        "deviceType": "Android",
+        "deviceRiskLevelScore": "3",
+        "lastSeenTimestamp": "1650561020"
+      },
+      {
+        "id": 1008,
+        "deviceId": "f0cb5f31-fe69-44dd-b6a8-61951a71e5a8",
+        "deviceType": "PC",
+        "deviceRiskLevelScore": "1",
+        "lastSeenTimestamp": "1650561020"
+      },{
+        "id": 1009,
+        "deviceId": "b9b701a0-8323-48b5-95c7-4a4090a42b58",
+        "deviceType": "Android",
+        "deviceRiskLevelScore": "2",
+        "lastSeenTimestamp": "1650561020"
+      },{
+        "id": 1010,
+        "deviceId": "0ed13e9b-c4c3-4b4f-9a81-ddf5c070c87d",
+        "deviceType": "Android",
+        "deviceRiskLevelScore": "2",
+        "lastSeenTimestamp": "1650561020"
+      },{
+        "id": 1011,
+        "deviceId": "1b3302a7-ffc3-4f5c-afd7-a9258dcac673",
+        "deviceType": "PC",
+        "deviceRiskLevelScore": "1",
+        "lastSeenTimestamp": "1650561020"
+      },{
+        "id": 1012,
+        "deviceId": "98c83147-3c35-4a19-b271-47015c1d43db",
+        "deviceType": "PC",
+        "deviceRiskLevelScore": "1",
+        "lastSeenTimestamp": "1650561020"
+      },{
+        "id": 1013,
+        "deviceId": "ba16b6d4-1e69-4cc6-815c-38ed3bfdcc00",
+        "deviceType": "Android",
+        "deviceRiskLevelScore": "1",
+        "lastSeenTimestamp": "1650561020"
+      },{
+        "id": 1014,
+        "deviceId": "ba950b9a-71fa-4b4f-b1d3-d7e7d58fbce4",
+        "deviceType": "IOS",
+        "deviceRiskLevelScore": "2",
+        "lastSeenTimestamp": "1650561020"
+      },{
+        "id": 1015,
+        "deviceId": "3b82a13b-afdb-4d6b-8a01-610c3452255b",
+        "deviceType": "Android",
+        "deviceRiskLevelScore": "3",
+        "lastSeenTimestamp": "1650561020"
+      }
+    ],
+    "totalRecords": 15
+  }

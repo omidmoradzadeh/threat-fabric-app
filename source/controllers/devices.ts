@@ -41,7 +41,7 @@ const getDevices = async (req: Request, res: Response, next: NextFunction) => {
   if (search)
     devices = devices.Where(
       (t) =>
-        t?.deviceType == search ||
+        t?.deviceType.toLocaleLowerCase() == search.toLocaleLowerCase() ||
         t?.deviceId == search ||
         t?.lastSeenTimestamp == search
     );
